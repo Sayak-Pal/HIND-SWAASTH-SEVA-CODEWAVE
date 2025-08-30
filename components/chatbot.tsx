@@ -22,7 +22,7 @@ export default function Chatbot() {
     "Login/Register/Account",
     "Contact",
     "Doctor/Specialist",
-    "Cost/Price/Fee",
+    "Cost/Price/Fee"
   ]
 
   const scrollToBottom = () => messagesEndRef.current?.scrollIntoView({ behavior: "smooth" })
@@ -32,9 +32,7 @@ export default function Chatbot() {
   const getFAQResponse = (message: string) => {
     const msg = message.toLowerCase()
     if (msg.includes("book") && msg.includes("appointment"))
-      return {
-        text: "To book an appointment, click 'Book Appointment' on homepage. Login first, then select hospital, doctor, and slot.",
-      }
+      return { text: "To book an appointment, click 'Book Appointment' on homepage. Login first, then select hospital, doctor, and slot." }
     if (msg.includes("services") || msg.includes("offer"))
       return { text: "We offer General Consultation, Specialist Care, Emergency Services, and Health Checkups." }
     if (msg.includes("hospital") && msg.includes("location"))
@@ -78,14 +76,11 @@ export default function Chatbot() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          messages: [...messages, newMessage, { role: "system", text: "Answer briefly and precisely." }],
+          messages: [...messages, newMessage, { role: "system", text: "Answer briefly and precisely." }]
         }),
       })
       const data = await res.json()
-      setMessages((prev) => [
-        ...prev,
-        { role: "model", text: data.text || "⚠️ AI service unavailable. Try again later." },
-      ])
+      setMessages((prev) => [...prev, { role: "model", text: data.text || "⚠️ AI service unavailable. Try again later." }])
     } catch (err) {
       setMessages((prev) => [...prev, { role: "model", text: "⚠️ AI service unavailable. Try again later." }])
     } finally {
@@ -99,7 +94,7 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 z-[9999]">
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-full w-14 h-14 bg-red-700 hover:bg-red-800 shadow-lg text-white"
+          className="rounded-full w-14 h-14 bg-blue-600 hover:bg-blue-700 shadow-lg text-white"
         >
           {isOpen ? "✕" : "💬"}
         </Button>
@@ -132,9 +127,7 @@ export default function Chatbot() {
                       />
                     )}
 
-                    <div
-                      className={`px-3 py-2 rounded-xl max-w-xs break-words ${m.role === "user" ? "bg-gradient-to-r from-red-700 to-red-800 text-white ml-2" : "bg-gradient-to-r from-gray-300 via-gray-200 to-gray-100 text-black mr-2"}`}
-                    >
+                    <div className={`px-3 py-2 rounded-xl max-w-xs break-words ${m.role === "user" ? "bg-gradient-to-r from-blue-500 to-blue-600 text-white ml-2" : "bg-gradient-to-r from-gray-300 via-gray-200 to-gray-100 text-black mr-2"}`}>
                       {m.text}
 
                       {/* Render clickable options if available */}
