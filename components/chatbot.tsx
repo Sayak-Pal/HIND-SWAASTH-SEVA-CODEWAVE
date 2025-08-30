@@ -94,7 +94,7 @@ export default function Chatbot() {
       <div className="fixed bottom-6 right-6 z-[9999]">
         <Button
           onClick={() => setIsOpen(!isOpen)}
-          className="rounded-full w-14 h-14 bg-blue-600 hover:bg-blue-700 shadow-lg text-white"
+          className="rounded-full w-14 h-14 bg-red-600 hover:bg-red-700 shadow-lg text-white"
         >
           {isOpen ? "✕" : "💬"}
         </Button>
